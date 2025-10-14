@@ -1,0 +1,75 @@
+# ------------------------------
+# .NET build artifacts
+# ------------------------------
+bin/
+obj/
+out/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+*.vscode/
+
+# ------------------------------
+# Logs and temporary files
+# ------------------------------
+*.log
+logs/
+log/
+temp/
+tmp/
+
+# ------------------------------
+# SQLite database
+# ------------------------------
+web/web.db
+*.db-shm
+*.db-wal
+
+# ------------------------------
+# Docker
+# ------------------------------
+# Ignore local docker build cache
+**/Dockerfile.*
+**/docker-compose.override.yml
+**/docker-compose.local.yml
+# But keep main Dockerfiles
+!**/Dockerfile
+!**/docker-compose.yml
+
+# ------------------------------
+# Node / Frontend
+# ------------------------------
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/.nuxt/
+frontend/.cache/
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/pnpm-lock.yaml
+
+# ------------------------------
+# IDEs and editors
+# ------------------------------
+.idea/
+*.iml
+*.DS_Store
+Thumbs.db
+
+# ------------------------------
+# Environment files
+# ------------------------------
+.env
+.env.*
+!.env.example
+
+# ------------------------------
+# Test and coverage results
+# ------------------------------
+*.coverage
+*.coveragexml
+TestResult*/
+coverage/

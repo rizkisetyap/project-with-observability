@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observability", "Observability\Observability.csproj", "{8F218263-DE14-4579-BB10-157E075411DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservabilityTest", "ObservabilityTest\ObservabilityTest.csproj", "{4011E296-040E-48D9-8156-8A49E0D42DFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{10BE889D-DBAE-4066-B0B0-D2081AF43E3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frontend", "frontend\frontend.csproj", "{FEDA6232-A139-452D-BA22-F4EAF669E950}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F218263-DE14-4579-BB10-157E075411DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F218263-DE14-4579-BB10-157E075411DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F218263-DE14-4579-BB10-157E075411DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F218263-DE14-4579-BB10-157E075411DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4011E296-040E-48D9-8156-8A49E0D42DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4011E296-040E-48D9-8156-8A49E0D42DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4011E296-040E-48D9-8156-8A49E0D42DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4011E296-040E-48D9-8156-8A49E0D42DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BE889D-DBAE-4066-B0B0-D2081AF43E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BE889D-DBAE-4066-B0B0-D2081AF43E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BE889D-DBAE-4066-B0B0-D2081AF43E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BE889D-DBAE-4066-B0B0-D2081AF43E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEDA6232-A139-452D-BA22-F4EAF669E950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEDA6232-A139-452D-BA22-F4EAF669E950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEDA6232-A139-452D-BA22-F4EAF669E950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEDA6232-A139-452D-BA22-F4EAF669E950}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
