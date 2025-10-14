@@ -7,4 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Observability\Observability.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
 </Project>

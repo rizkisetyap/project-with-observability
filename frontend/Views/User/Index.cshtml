@@ -1,0 +1,41 @@
+@using frontend.Dto
+@model List<UserDto>
+
+@{
+    ViewData["Title"] = "User Page";
+}
+<div>
+    <div>
+        <button class="btn btn-success">Insert</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int num = 1;
+            }
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@num</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "User", new { Id = user.Id })"
+                            class="btn btn-sm btn-primary mr-1">edit</a>
+                        <button class="btn btn-sm btn-danger">delete</button>
+                    </td>
+                </tr>
+                num++;
+            }
+        </tbody>
+    </table>
+
+</div>

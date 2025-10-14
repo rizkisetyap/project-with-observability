@@ -31,4 +31,30 @@ public class UserController : ControllerBase
 
         return StatusCode(StatusCodes.Status201Created);
     }
+
+    [HttpGet]
+    [Route("{Id}")]
+    public async Task<IActionResult> GetUserById(Guid Id)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Id);
+        if (user == null)
+            return NotFound();
+
+        return Ok(user);
+    }
+
+    [HttpPut]
+    [Route("{Id}")]
+    public async Task<IActionResult> EditUserById(Guid Id, [FromBody] User userBody)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Id);
+        if (user == null)
+            return NotFound();
+
+        user.Name = userBody.Name;
+        user.Email = userBody.Email;
+        _context.Entry(user).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return Ok(user);
+    }
 }

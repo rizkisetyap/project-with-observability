@@ -1,3 +1,5 @@
+using System.Net.Http.Headers;
+using frontend.Service;
 using Observability;
 using Observability.HealthCheck;
 using Observability.Middlewares;
@@ -21,6 +23,17 @@ var otelOptions = builder
     .Configuration.GetSection("OpenTelemetryOptions")
     .Get<OpenTelemetryOptions>();
 
+builder.Services.AddHttpClient<HttpClientService>(client =>
+{
+    var apiUrl = builder.Configuration["Backend"];
+    if (!string.IsNullOrEmpty(apiUrl))
+    {
+        client.BaseAddress = new Uri(apiUrl);
+    }
+    client.DefaultRequestHeaders.Accept.Add(
+        new MediaTypeWithQualityHeaderValue("application/json")
+    );
+});
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<TracingHeaderHandler>();
 
