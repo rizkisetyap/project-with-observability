@@ -6,7 +6,7 @@
 }
 <div>
     <div>
-        <button class="btn btn-success">Insert</button>
+        <a href="@Url.Action("Create", "User")" class="btn btn-success">Insert</a>
     </div>
     <table>
         <thead>
@@ -30,12 +30,33 @@
                     <td>
                         <a href="@Url.Action("Edit", "User", new { Id = user.Id })"
                             class="btn btn-sm btn-primary mr-1">edit</a>
-                        <button class="btn btn-sm btn-danger">delete</button>
+                        <button type="button" onclick="deleteUser('@user.Id')" class="btn btn-sm btn-danger">delete</button>
                     </td>
                 </tr>
                 num++;
             }
         </tbody>
     </table>
-
 </div>
+
+@section Scripts {
+    <script>
+
+        function deleteUser(id) {
+            const sure = confirm("Are u sure?")
+            if (!sure) return;
+
+            fetch("@Url.Action("Delete", "User")/" + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(res => {
+                window, location.reload();
+            }).catch(e => {
+                alert(e)
+            })
+        }
+
+    </script>
+}

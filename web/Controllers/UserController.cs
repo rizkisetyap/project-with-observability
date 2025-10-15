@@ -57,4 +57,15 @@ public class UserController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(user);
     }
+
+    [HttpDelete]
+    [Route("{Id}")]
+    public async Task<IActionResult> DeleteUser([FromRoute] Guid Id)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Id);
+        if (user == null) return NotFound();
+        _context.Remove(user);
+        await _context.SaveChangesAsync();
+        return StatusCode(StatusCodes.Status204NoContent);
+    }
 }

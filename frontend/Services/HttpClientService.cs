@@ -48,4 +48,14 @@ public class HttpClientService
         var result = await response.Content.ReadAsStringAsync();
         return JsonConvert.DeserializeObject<TResponse>(result);
     }
+
+    public async Task<TResponse?> DeleteAsync<TResponse>(string url)
+    {
+        var response = await _httpClient.DeleteAsync(url);
+        response.EnsureSuccessStatusCode();
+
+        var result = await response.Content.ReadAsStringAsync();
+
+        return JsonConvert.DeserializeObject<TResponse>(result);
+    }
 }
