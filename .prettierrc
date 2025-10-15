@@ -1,0 +1,19 @@
+{
+  "plugins": [
+    "prettier-plugin-razor",
+    "prettier-plugin-csharp"
+  ],
+  "tabWidth": 4,
+  "printWidth": 100,
+  "singleQuote": true,
+  "semi": true,
+  "endOfLine": "lf",
+  "bracketSpacing": true,
+  "csharp": {
+    "useTabs": false,
+    "indentSize": 4
+  },
+  "razor": {
+    "indentSize": 4
+  }
+}

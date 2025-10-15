@@ -61,7 +61,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "frontend", pattern: "{controller=Home}/{action=Index}/{id?}");
 app.UseObservability(otelOptions?.Exporters.Metrics);
 app.UseHealthCheck();
 app.Run();

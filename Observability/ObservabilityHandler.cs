@@ -82,7 +82,9 @@ public static class ObservabilityHandler
                     return;
                 metrics
                     .AddProcessInstrumentation()
-                    // .AddAspNetCoreInstrumentation() jika membutuhkan auto instrument untuk metrics
+                    .AddRuntimeInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .AddAspNetCoreInstrumentation() // jika membutuhkan auto instrument untuk metrics
                     .AddMeter(otelOptions.ResourceAttributes.ServiceName)
                     //eg: "MyApp.ServiceName" atau "Company.Product.Module"
                     // "orders.api", "billing.service" atau "inventory.processor"

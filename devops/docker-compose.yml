@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  web:
+  backend:
     build:
       context: ..
       dockerfile: web/Dockerfile
@@ -15,10 +15,13 @@ services:
       retries: 3
       start_period: 10s
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__DefaultConnection=Data Source=/app/web.db
     volumes:
       - ../web/web.db:/app/web.db
+    networks:
+      - app-net
   frontend:
     build:
       context: ..
@@ -33,4 +36,61 @@ services:
       retries: 3
       start_period: 10s
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
       - Backend=http://backend:8080/api/v1/
+    networks:
+      - app-net
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor metricsSummary
+      - GF_INSTALL_PLUGINS=https://storage.googleapis.com/integration-artifacts/grafana-exploretraces-app/grafana-exploretraces-app-latest.zip;grafana-traces-app
+    volumes:
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - app-net
+    depends_on:
+      - prometheus
+      - loki
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      # - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+      # - ./prometheus/recording.rules.yml:/etc/prometheus/recording.rules.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    #     depends_on:
+    #       - otel-collector
+    networks:
+      - app-net
+  loki:
+    image: grafana/loki:2.9.4
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml -config.expand-env=true
+    volumes:
+      - loki-data:/loki
+      - ./loki/config.yaml:/etc/loki/local-config.yaml
+    networks:
+      - app-net
+networks:
+  app-net:
+volumes:
+  prometheus-data:
+  grafana-data:
+  loki-data:
